@@ -26,7 +26,7 @@
 ## 📦 Instalação
 
 1. Clone o repositório ou baixe os fontes:
-
+   ```bash
    git clone [https://github.com/rlins10/doomtui.py.git](https://github.com/rlins10/doomtui.py.git)
    cd doomtui.py
    cp doomtui.py /usr/local/bin
