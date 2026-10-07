@@ -2,6 +2,10 @@
 
 **DoomTUI** é um launcher moderno e elegante baseado em terminal (TUI), desenvolvido em Python utilizando o framework [Textual](https://github.com/Textualize/textual). Ele foi criado para gerenciar e iniciar facilmente os seus jogos favoritos baseados na engine Doom, organizando IWADs, PWADs (pastas e arquivos `.wad` ou `.pk3`) e múltiplos Source Ports de forma limpa e intuitiva.
 
+
+<img width="1277" height="1024" alt="doomtui" src="https://github.com/user-attachments/assets/84b9dc79-c627-4e9c-9a97-bbbda277d328" />
+
+
 ---
 
 ## 🚀 Funcionalidades
