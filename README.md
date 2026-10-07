@@ -35,7 +35,7 @@
 
 ## ⚙️  Configuração
 
-O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
+2. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
     
     ```bash
     ~/.config/doomtui/doomtui.ini
@@ -58,12 +58,12 @@ O DoomTUI cria automaticamente o arquivo de configuração na primeira execuçã
 
 ## 🎮 Como Usar
 
-1. Execute o script principal a partir do terminal:
+3. Execute o script principal a partir do terminal:
 
    ```
    doomtiu.py
 
-2. Atalhos de Teclado Principais:
+4. Atalhos de Teclado Principais:
    e: Abre o editor modal para alterar o ficheiro doomtui.ini.
    v: Abre o modo somente leitura do ficheiro doomtui.ini.
    q: Sai da aplicação.
