@@ -30,6 +30,8 @@ from textual.widgets import Header, Footer, Static, Select, RadioSet, RadioButto
 from textual.binding import Binding
 from textual.screen import ModalScreen
 
+# versão
+__version__ = "0.7"
 
 # editor para o INI    
 class IniEditorScreen(ModalScreen):
