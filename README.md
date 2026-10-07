@@ -11,7 +11,7 @@
 ## 🚀 Funcionalidades
 
 * **Interface TUI Moderna:** Construída com Textual, oferecendo navegação por teclado e visual limpo.
-* **Detecção Automática:** Varredura recursiva de diretórios configurados para encontrar IWADs e PWADs.
+* **Detecção Automática:** Varredura de diretórios configurados para encontrar IWADs e PWADs.
 * **Suporte a Múltiplos Formatos:** Compatível com arquivos `.wad` e `.pk3`.
 * **Modos de Carregamento:** Alternância rápida entre `-file` (padrão) e `-merge` (mesclagem).
 * **Editor de Configuração Integrado:** Visualize ou edite o arquivo de configuração `.ini` diretamente de dentro da aplicação através de uma tela modal com editor de texto embutido.
