@@ -26,6 +26,7 @@
 ## 📦 Instalação
 
 1. Clone o repositório ou baixe os fontes:
+
    ```bash
    git clone [https://github.com/rlins10/doomtui.git](https://github.com/rlins10/doomtui.git)
    cd doomtui
@@ -35,24 +36,25 @@
 ## ⚙️  Configuração
 
     O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
-    ```base
+    
+    ```bash
     ~/.config/doomtui/doomtui.ini
 
     Exemplo da estrutura padrão do **.ini:**
 
-       ```bash
-       [IWADSearch.Directories]
-       Path=$DOOMWADDIR
-       Path=$HOME/games/others
+    ```bash
+    [IWADSearch.Directories]
+    Path=$DOOMWADDIR
+    Path=$HOME/games/others
 
-       [PWAD.Directories]
-       Path=$HOME/games/doom/doom-pwad
-       Path=$HOME/games/doom/doom2-pwad
+    [PWAD.Directories]
+    Path=$HOME/games/doom/doom-pwad
+    Path=$HOME/games/doom/doom2-pwad
 
-       [PORT.Directories]
-       Port=gzdoom
-       Port=uzdoom
-       Port=$HOME/games/zandronum/zandronum
+    [PORT.Directories]
+    Port=gzdoom
+    Port=uzdoom
+    Port=$HOME/games/zandronum/zandronum
 
 ## 🎮 Como Usar
 
