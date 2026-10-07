@@ -27,19 +27,20 @@
 
 1. Clone o repositório ou baixe os fontes:
    ```bash
-   git clone [https://github.com/rlins10/doomtui.py.git](https://github.com/rlins10/doomtui.py.git)
-   cd doomtui.py
+   git clone [https://github.com/rlins10/doomtui.git](https://github.com/rlins10/doomtui.git)
+   cd doomtui
    cp doomtui.py /usr/local/bin
    chmod +x /usr/local/bin/doomtui.py
 
 ## ⚙️  Configuração
 
     O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
-
+    ```base
     ~/.config/doomtui/doomtui.ini
 
     Exemplo da estrutura padrão do **.ini:**
 
+       ```bash
        [IWADSearch.Directories]
        Path=$DOOMWADDIR
        Path=$HOME/games/others
@@ -57,6 +58,7 @@
 
 1. Execute o script principal a partir do terminal:
 
+   ```
    doomtiu.py
 
 2. Atalhos de Teclado Principais:
