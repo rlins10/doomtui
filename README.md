@@ -72,6 +72,13 @@
    v: Abre o modo somente leitura do ficheiro doomtui.ini.
    q: Sai da aplicação.
 
+## 🗺️ (TODO)
+
+5. Próximos Passos
+* [ ] Auto Refresh das seleções do iwad.
+* [ ] Salvar os parametros extras no .ini.
+* [ ] Adicionar checagem automática de atualizações do projeto.
+
 ## 📄 Licença
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
    Consulte o ficheiro LICENSE para mais detalhes.
