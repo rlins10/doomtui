@@ -35,7 +35,7 @@
 
 ## ⚙️  Configuração
 
-    O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
+O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
     
     ```bash
     ~/.config/doomtui/doomtui.ini
