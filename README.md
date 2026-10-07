@@ -44,7 +44,7 @@
     ```bash
     ~/.config/doomtui/doomtui.ini
 
-    Exemplo da estrutura padrão do **.ini:**
+3. Exemplo da estrutura padrão do **.ini:**
 
     ```bash
     [IWADSearch.Directories]
@@ -62,19 +62,19 @@
 
 ## 🎮 Como Usar
 
-3. Execute o script principal a partir do terminal:
+4. Execute o script principal a partir do terminal:
 
    ```
    doomtiu.py
 
-4. Atalhos de Teclado Principais:
+5. Atalhos de Teclado Principais:
    e: Abre o editor modal para alterar o ficheiro doomtui.ini.
    v: Abre o modo somente leitura do ficheiro doomtui.ini.
    q: Sai da aplicação.
 
 ## 🗺️ (TODO)
 
-5. Próximos Passos
+6. Próximos Passos
 * [ ] Auto Refresh das seleções do iwad.
 * [ ] Salvar os parametros extras no .ini.
 * [ ] Adicionar checagem automática de atualizações do projeto.
