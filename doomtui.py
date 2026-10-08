@@ -540,7 +540,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 select_port = Select(
                     self.port_options,
                     value=(self.port_options[0][1] if self.port_options else "gzdoom"),
-                    allow_blank=False,,id="port-select",classes="boxed-field"
+                    allow_blank=False,id="port-select",classes="boxed-field"
                 )
                 select_port.border_title = "3. Selecione o Port"
                 yield select_port
