@@ -32,10 +32,11 @@
 1. Clone o repositório ou baixe os fontes:
 
    ```bash
-   git clone [https://github.com/rlins10/doomtui.git](https://github.com/rlins10/doomtui.git)
+   git clone https://github.com/rlins10/doomtui.git
    cd doomtui
-   cp doomtui.py /usr/local/bin
-   chmod +x /usr/local/bin/doomtui.py
+   sudo cp doomtui.py /usr/local/bin
+   sudo chmod +x /usr/local/bin/doomtui.py
+   ```
 
 ## ⚙️  Configuração
 
@@ -43,6 +44,7 @@
     
     ```bash
     ~/.config/doomtui/doomtui.ini
+    ```
 
 3. Exemplo da estrutura padrão do **.ini:**
 
@@ -59,18 +61,20 @@
     Port=gzdoom
     Port=uzdoom
     Port=$HOME/games/zandronum/zandronum
+    ```
 
 ## 🎮 Como Usar
 
 4. Execute o script principal a partir do terminal:
 
    ```
-   doomtiu.py
+   doomtui.py
 
 5. Atalhos de Teclado Principais:
-   e: Abre o editor modal para alterar o ficheiro doomtui.ini.
-   v: Abre o modo somente leitura do ficheiro doomtui.ini.
-   q: Sai da aplicação.
+   ^e: Abre o editor modal para alterar o ficheiro doomtui.ini.
+   ^v: Abre o modo somente leitura do ficheiro doomtui.ini.
+   ^q: Sai da aplicação.
+   Esc: sair do editor e/ou visualizador
 
 ## 🗺️ (TODO)
 
