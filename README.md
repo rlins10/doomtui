@@ -6,7 +6,6 @@
 <img width="1024"  alt="doomtui" src="screenshot.png" />
 
 ---
-
 ## 🚀 Funcionalidades
 
 * **Interface TUI Moderna:** Construída com Textual, oferecendo navegação por teclado e visual limpo.
@@ -17,7 +16,6 @@
 * **Pré-visualização de Comandos:** Acompanhe o comando completo gerado em tempo real, com suporte a cópia rápida para a área de transferência (`xclip` / `wl-clipboard`).
 
 ---
-
 ## 🛠️ Requisitos
 
 * Python 3.8 ou superior
@@ -25,7 +23,6 @@
   * `textual` [Repositório di Github](https://github.com/Textualize/textual)
 
 ---
-
 ## 📦 Instalação
 
 1. Clone o repositório ou baixe os fontes:
@@ -38,7 +35,6 @@
    ```
 
 ---
-
 ## ⚙️  Configuração
 
 2. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
@@ -63,9 +59,7 @@
     Port=uzdoom
     Port=$HOME/games/zandronum/zandronum
     ```
-
 ---
-
 ## 🎮 Como Usar
 
 4. Execute o script principal a partir do terminal:
@@ -81,7 +75,6 @@
    * Esc: sair do editor e/ou visualizador
 
 ---
-
 ## 🗺️ (TODO)
 
 6. Próximos Passos
@@ -92,7 +85,6 @@
 * [ ] Testar no windows
 
 ---
-
 ## 📄 Licença
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
    Consulte o ficheiro LICENSE para mais detalhes.
