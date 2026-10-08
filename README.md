@@ -67,8 +67,9 @@
 
 4. Execute o script principal a partir do terminal:
 
-   ```
+   ```bash
    doomtui.py
+   ```
 
 5. Atalhos de Teclado Principais:
    * ctrl-e: Abre o editor modal para alterar o ficheiro doomtui.ini.
