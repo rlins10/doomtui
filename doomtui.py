@@ -776,10 +776,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         elif radio_id == "mode-merge":
             self.selected_mode = "-merge"
 
-        elif radio_id.startswith("pwad_"):
-            self.selected_pwad = self.pwad_map.get(radio_id, "")
-
-        self.update_command_preview()
+		self.update_command_preview()
 
     def on_input_changed(self, event: Input.Changed) -> None:
         if event.input.id == "extra-input":
