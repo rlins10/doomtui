@@ -34,15 +34,17 @@
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
+2. Para instalação do `textual` sem pip, visite o [Repositório do Github](https://github.com/Textualize/textual)
+
 ## ⚙️  Configuração
 
-2. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
+3. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
     
     ```bash
     ~/.config/doomtui/doomtui.ini
     ```
 
-3. Exemplo da estrutura padrão do **.ini:**
+4. Exemplo da estrutura padrão do **.ini:**
 
     ```ini
     [IWADSearch.Directories]
@@ -61,7 +63,7 @@
     
 ## 🎮 Como Usar
 
-4. Execute o script principal a partir do terminal:
+5. Execute o script principal a partir do terminal:
 
    ```bash
    doomtui.py
@@ -71,7 +73,7 @@
    * Selecione suas opções
    * Jogue a vontade
 
-5. Atalhos de Teclado Principais:
+6. Atalhos de Teclado Principais:
    * ctrl-e: Abre o editor modal para alterar o arquivo doomtui.ini.
    * ctrl-v: Abre o modo somente leitura do ficheiro doomtui.ini.
    * ctrl-q: Sai da aplicação.
@@ -79,7 +81,7 @@
 
 ## 🗺️ (TODO)
 
-6. Próximos Passos
+7. Próximos Passos
    * [ ] Auto Refresh das seleções do iwad.
    * [ ] Salvar os parametros extras no .ini.
    * [ ] Adicionar checagem automática de atualizações do projeto.

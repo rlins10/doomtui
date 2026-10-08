@@ -379,7 +379,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                     if file_path.is_file() and file_path.suffix.lower() == ".wad":
                         iwads.append((file_path.name, str(file_path)))
             except OSError:
-                logging.warning("Sem acesso a pasta: %s", directory)
+                logging.warning("Sem acesso a pasta (iwads): %s", directory)
                 continue
 
         iwads.sort(key=lambda item: item[0].lower())
@@ -401,6 +401,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         for directory_info in self.pwad_directories:
             directory = directory_info["path"]
             if not directory.exists() or not directory.is_dir():
+                logging.warning("Sem acesso a pasta: %s", directory)
                 continue
             files_in_dir = []
             try:
@@ -410,7 +411,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                     if file_path.suffix.lower() in (".wad", ".pk3"):
                         files_in_dir.append(file_path)
             except OSError:
-                logging.warnng("Sem acesso a pasta: %s", directory)
+                logging.warning("Sem acesso a pasta  (pwads): %s", directory)
                 continue
 
             if not files_in_dir:
@@ -466,7 +467,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
         iwad_options = self.scan_iwads()
         if not iwad_options:
             iwad_select.set_options([("Nenhum IWAD encontrado", "")])
-            iwad_select.value = Select.BLANK
             self.selected_iwad = ""
         else:
             iwad_select.set_options(iwad_options)
@@ -523,12 +523,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 if not iwad_options:
                     iwad_options = [("Nenhum IWAD encontrado", "")]
 
-                select_iwad = Select(
-                    iwad_options,
-                    prompt="Escolha o IWAD",
-                    id="iwad-select",
-                    classes="boxed-field"
-                )
+                select_iwad = Select(iwad_options,
+                    allow_blank=False,id="iwad-select",classes="boxed-field")
                 select_iwad.border_title = "1. Selecione o IWAD"
                 yield select_iwad
 
@@ -539,14 +535,12 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         yield RadioButton("-file (Padrão)",value=True,id="mode-file")
                         yield RadioButton("-merge (Mesclagem)",id="mode-merge")
 
+			# Select dos source ports
             with Vertical(classes="column"):
                 select_port = Select(
                     self.port_options,
-                    value=(
-                        self.port_options[0][1]
-                        if self.port_options else "gzdoom"
-                    ),
-                    id="port-select",classes="boxed-field"
+                    value=(self.port_options[0][1] if self.port_options else "gzdoom"),
+                    allow_blank=False,,id="port-select",classes="boxed-field"
                 )
                 select_port.border_title = "3. Selecione o Port"
                 yield select_port
@@ -656,15 +650,13 @@ Port=$DOOMWADDIR/zandronum/zandronum
     @on(Select.Changed, "#iwad-select")
     def on_iwad_changed(self, event):
         """Atualiza o iwad selecionado e o preview do comando."""
-        self.selected_iwad = "" if event.value is Select.BLANK else event.value
+        self.selected_iwad = event.value
         self.update_command_preview()
 
     # handler do Select de Port
     @on(Select.Changed, "#port-select")
     def on_port_changed(self, event: Select.Changed) -> None:
         """Atualiza o port selecionado e o preview do comando."""
-        if event.value is Select.BLANK:
-            return
         self.selected_port = event.value
         self.update_command_preview()
 

@@ -1,0 +1,49 @@
+# =====================================================================
+# DOOMTUI - MANIFESTO E DEPENDÊNCIAS
+# =====================================================================
+#
+# Este arquivo segue o formato "requirements" do pip: linhas iniciadas
+# por "#" são comentários e cada linha restante é uma dependência.
+#
+# 1. SOBRE O SISTEMA
+#    DoomTUI (doomtui.py) é um launcher TUI em Python, feito com o
+#    framework Textual, para organizar e iniciar jogos baseados na
+#    engine Doom:
+#    - Seleção de IWAD, em ordem alfabética
+#    - Múltiplos diretórios de pesquisa para IWADs, PWADs e ports
+#    - PWADs .wad e .pk3, com a opção "Nenhum PWAD"
+#    - Modos de carregamento -file e -merge
+#    - Seleção de Source Port (GZDoom, UZDoom, etc.)
+#    - Parâmetros extras personalizados
+#    - Editor e visualizador do doomtui.ini dentro da aplicação
+#    - Copiar o comando para a área de transferência e executar
+#
+# 2. REQUISITOS
+#    - Python 3.9 ou superior
+#    - Textual (instalado pelo pip, veja a seção 4)
+#    - Para o botão "Copiar Comando", uma destas ferramentas:
+#        X11:     sudo apt install xclip
+#        Wayland: sudo apt install wl-clipboard
+#
+# 3. CONFIGURAÇÃO
+#    Na primeira execução, o arquivo de configuração é criado em:
+#        ~/.config/doomtui/doomtui.ini
+#
+# 4. INSTALAÇÃO DAS DEPENDÊNCIAS
+#    Em sistemas recentes (Ubuntu 23.04+ e derivados) o pip bloqueia a
+#    instalação no Python do sistema. Use um ambiente virtual:
+#
+#        python3 -m venv .venv
+#        source .venv/bin/activate
+#        pip install -r manifest.txt
+#        python doomtui.py
+#
+#    Textual: https://github.com/Textualize/textual
+#
+# 5. ATALHOS
+#    ctrl+e  editar o .ini      ctrl+v  ver o .ini
+#    ctrl+q  sair               Esc     fechar o editor/visualizador
+#
+# =====================================================================
+
+textual>=8.0,<9
