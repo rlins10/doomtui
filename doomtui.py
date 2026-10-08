@@ -45,11 +45,13 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(message)s"
 )
 
-__version__ = "0.8.2"
+__version__ = "0.8.4"
 PWAD_NONE_ID = "pwad_none"
 
 class IniEditorScreen(ModalScreen):
     """Tela modal para visualizar ou editar o arquivo doomtui.ini."""
+
+    BINDINGS = [Binding("escape", "close", "Fechar")]
 
     CSS = """
     ModalScreen {
@@ -89,7 +91,7 @@ class IniEditorScreen(ModalScreen):
     def __init__(self, ini_path: Path, read_only: bool = False):
         super().__init__()
         
-        BINDINGS = [Binding("escape", "close", "Fechar")]
+        
         
         self.ini_path = ini_path
         self.read_only = read_only
@@ -376,6 +378,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
             directory = directory_info["path"]
 
             if not directory.exists() or not directory.is_dir():
+                logging.debug("Pasta ignorada (não existe): %s", directory)
                 continue
 
             try:
@@ -383,7 +386,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                     if file_path.is_file() and file_path.suffix.lower() == ".wad":
                         iwads.append((file_path.name, str(file_path)))
             except OSError:
-                logging.debug("Pasta ignorada (não existe): %s", directory)
+                logging.warning("Sem acesso a pasta: %s", directory)
                 continue
 
         iwads.sort(key=lambda item: item[0].lower())
@@ -406,8 +409,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
 		# busca por arquivos.
         for directory_info in self.pwad_directories:
             directory = directory_info["path"]
-            if not directory.exists() or not directory.is_dir():
-               continue
 
             if not directory.exists() or not directory.is_dir():
                 continue
@@ -423,7 +424,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         files_in_dir.append(file_path)
 
             except OSError:
-                logging.debug("Pasta ignorada (não existe): %s", directory)
+                logging.warnng("Sem acesso a pasta: %s", directory)
                 continue
 
             if not files_in_dir:
@@ -516,7 +517,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
             port_select.value = self.selected_port
 
         # PWADs
-        self.populate_pwads_list()
+        self.populate_pwad_list()
 
         self.update_command_preview()
         self.notify("Configurações do .ini recarregadas com sucesso!", severity="information")
@@ -753,8 +754,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
             return
 
         if button_id == "btn-copy":
-            command = self.build_command_string()
-
             try:
                 command = self.build_command_string()
             except ValueError:
@@ -764,19 +763,22 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 )
                 return
 
-            try:
-                subprocess.run(
-                    ["xclip", "-selection", "clipboard"],
-                    input=command.encode("utf-8"),
-                    check=True
-                )
+            for clip_cmd in (["xclip", "-selection", "clipboard"], ["wl-copy"]):
+                try:
+                    subprocess.run(
+                        clip_cmd,
+                        input=command.encode("utf-8"),
+                        check=True
+                    )
+                    self.notify("Comando copiado para a área de transferência!")
+                    return
+                except (subprocess.SubprocessError, FileNotFoundError):
+                    continue
 
-            except (subprocess.SubprocessError, FileNotFoundError):
-                self.notify(
-                    "Erro: instale xclip ou wl-clipboard para copiar.",
-                    severity="error"
-                )
-
+            self.notify(
+                "Erro: instale xclip ou wl-clipboard para copiar.",
+                severity="error"
+            )
             return
             
         if button_id == "btn-run":
