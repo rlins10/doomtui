@@ -5,7 +5,6 @@
 
 <img width="1024"  alt="doomtui" src="images/screenshot.png" />
 
-
 ---
 
 ## 🚀 Funcionalidades
@@ -38,6 +37,8 @@
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
+---
+
 ## ⚙️  Configuração
 
 2. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
@@ -62,6 +63,7 @@
     Port=uzdoom
     Port=$HOME/games/zandronum/zandronum
     ```
+---
 
 ## 🎮 Como Usar
 
@@ -77,6 +79,8 @@
    * ctrl-q: Sai da aplicação.
    * Esc: sair do editor e/ou visualizador
 
+---
+
 ## 🗺️ (TODO)
 
 6. Próximos Passos
@@ -85,6 +89,8 @@
 * [ ] Adicionar checagem automática de atualizações do projeto.
 * [ ] Multi Language
 * [ ] Testar no windows
+
+---
 
 ## 📄 Licença
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
