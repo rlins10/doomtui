@@ -27,7 +27,7 @@ from pathlib import Path
 
 from textual.app import App, ComposeResult
 from textual.binding import Binding
-from textual.containers import Container, Vertical, Horizontal, ScrollableContainer
+from textual.containers import Container, Vertical, Horizontal
 from textual.screen import ModalScreen
 from textual.widgets import (
     Header, Footer, Static, Select, RadioSet, RadioButton,
@@ -45,8 +45,8 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(message)s"
 )
 
-__version__ = "0.8.1"
-
+__version__ = "0.8.2"
+PWAD_NONE_ID = "pwad_none"
 
 class IniEditorScreen(ModalScreen):
     """Tela modal para visualizar ou editar o arquivo doomtui.ini."""
@@ -88,8 +88,14 @@ class IniEditorScreen(ModalScreen):
 
     def __init__(self, ini_path: Path, read_only: bool = False):
         super().__init__()
+        
+        BINDINGS = [Binding("escape", "close", "Fechar")]
+        
         self.ini_path = ini_path
         self.read_only = read_only
+
+    def action_close(self) -> None:
+        self.dismiss(False)
 
     def compose(self) -> ComposeResult:
         content = ""
@@ -116,7 +122,7 @@ class IniEditorScreen(ModalScreen):
 
             try:
                 self.ini_path.write_text(textarea.text, encoding="utf-8")
-                self.app.notify("Ficheiro .ini salvo com sucesso!", severity="success")
+                self.app.notify("Arquivo .ini salvo com sucesso!")
                 self.app.load_config()
                 self.dismiss(True)
             except Exception as e:
@@ -130,9 +136,9 @@ class DoomLauncherTUI(App):
     """Launcher para WADs de Doom com configuração através de arquivo .ini."""
 
     BINDINGS = [
-        Binding("e", "edit_ini", "Editar INI", priority=True),
-        Binding("v", "view_ini", "Ver INI", priority=True),
-        Binding("q", "quit", "Sair", priority=True),
+        Binding("ctrl+e", "edit_ini", "Editar INI"),
+        Binding("ctrl+v", "view_ini", "Ver INI"),
+        Binding("ctrl+q", "quit", "Sair"),
     ]
 
     CSS = """
@@ -201,31 +207,6 @@ class DoomLauncherTUI(App):
         padding: 0 1;
     }
 
-    .dir-header {
-        background: $primary;
-        color: $text;
-        text-style: bold;
-        padding: 0 1;
-        margin-top: 1;
-        margin-bottom: 0;
-    }
-
-    .pwad-radio {
-        margin-left: 2;
-        background: transparent;
-    }
-
-    #pwads-scroll-container {
-        height: 1fr;
-        border: round $accent;
-        border-title-color: $accent;
-        border-title-style: bold;
-        padding: 1;
-        background: $boost;
-        margin-top: 0;
-        margin-bottom: 1;
-    }
-
     #command-preview {
         background: $panel;
         color: $success;
@@ -253,9 +234,13 @@ class DoomLauncherTUI(App):
          border-title-style: bold;
     }
 
+    #pwad-list > .option-list--option-disabled {
+        color: $accent;
+        text-style: bold;
+    }
     """
 
-    default_ini_content = """# Este ficheiro foi gerado para o DoomTui
+    default_ini_content = """# Este arquivo foi gerado para o DoomTui
 # https://github.com/rlins10/doomtui
 
 [IWADSearch.Directories]
@@ -360,10 +345,11 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
                     elif current_section == "port.directories" and key == "port":
                         expanded = self.expand_path_smart(value)
-                        port_name = Path(expanded).stem.capitalize()
+                        port_name = Path(expanded).name.capitalize()
                         raw_ports.append((port_name, expanded))
 
-        except Exception as e:
+        except Exception:
+            logging.exception("Erro ao ler %s", self.ini_path)
             self.port_options = [("GZDoom", "gzdoom")]
             return
 
@@ -397,6 +383,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                     if file_path.is_file() and file_path.suffix.lower() == ".wad":
                         iwads.append((file_path.name, str(file_path)))
             except OSError:
+                logging.debug("Pasta ignorada (não existe): %s", directory)
                 continue
 
         iwads.sort(key=lambda item: item[0].lower())
@@ -436,6 +423,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         files_in_dir.append(file_path)
 
             except OSError:
+                logging.debug("Pasta ignorada (não existe): %s", directory)
                 continue
 
             if not files_in_dir:
@@ -454,42 +442,43 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
         return structured_pwads
 
-    def populate_pwads_container(self) -> None:
-        """Reconstrói a lista de PWADs usando um único RadioSet."""
+    #
+    def populate_pwad_list(self) -> None:
+        """Reconstrói o OptionList de PWADs a partir do .ini."""
 
-        scroll = self.query_one("#pwads-scroll-container", ScrollableContainer)
-        scroll.remove_children()
+        pwad_list = self.query_one("#pwad-list", OptionList)
+        pwad_list.clear_options()
 
         self.pwad_map = {}
-        widgets = []
-        radio_buttons = []
         global_index = 0
 
+        # Opção fixa: remove o PWAD do comando final
+        pwad_list.add_option(Option("✖ Nenhum PWAD", id=PWAD_NONE_ID))
+
         for group in self.scan_pwads():
-            widgets.append(Static(f"📂 {group['folder']}", classes="dir-header"))
+            pwad_list.add_option(None)  # separador
+
+            # Cabeçalho do diretório (não selecionável)
+            pwad_list.add_option(
+                Option(f"📂 {group['folder']}", disabled=True)
+            )
 
             for filename in group["files"]:
                 safe_id = f"pwad_{global_index}"
                 self.pwad_map[safe_id] = group["paths"][filename]
-                radio_buttons.append(
-                    RadioButton(filename, id=safe_id, classes="pwad-radio")
-                )
+                pwad_list.add_option(Option(f"  {filename}", id=safe_id))
                 global_index += 1
 
-        if radio_buttons:
-            widgets.append(RadioSet(*radio_buttons))
-
-        if not widgets:
-            widgets.append(
-                Static("Nenhum PWAD encontrado nas pastas do .ini", classes="dir-header")
+        if not self.pwad_map:
+            pwad_list.add_option(None)
+            pwad_list.add_option(
+                Option("Nenhum PWAD encontrado nas pastas do .ini", disabled=True)
             )
 
-        for widget in widgets:
-            scroll.mount(widget)
-
-        # O PWAD anterior deixa de ser válido após reconstruir a lista.
+        # O PWAD anterior pode não existir mais após recarregar.
         if self.selected_pwad not in self.pwad_map.values():
             self.selected_pwad = ""
+
 
     def refresh_ui_elements(self, old_iwad: str = "") -> None:
         """Atualiza a interface depois de recarregar o .ini."""
@@ -527,13 +516,15 @@ Port=$DOOMWADDIR/zandronum/zandronum
             port_select.value = self.selected_port
 
         # PWADs
-        self.populate_pwads_container()
+        self.populate_pwads_list()
 
         self.update_command_preview()
         self.notify("Configurações do .ini recarregadas com sucesso!", severity="information")
 
     def on_mount(self) -> None:
         """Executado quando a interface já está montada."""
+
+        self.populate_pwad_list()
 
         iwad_options = self.scan_iwads()
 
@@ -549,8 +540,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
             self.selected_port = self.port_options[0][1]
 
         self.update_command_preview()
-###
-# compose
+
+    # compose
     def compose(self) -> ComposeResult:
         """Constrói a interface principal."""
 
@@ -618,105 +609,34 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
             pwad_list = OptionList(id="pwad-list")
             pwad_list.border_title = "5. Selecione o PWAD"
-
-            self.pwad_map = {}
-
-            global_index = 0
-            first_group = True
-
-            for group in self.scan_pwads():
-
-                if not first_group:
-                    pwad_list.add_option(None)
-
-                first_group = False
-
-                # Cabeçalho do diretório
-                pwad_list.add_option(
-                    Option(
-                        f"📂 {group['folder']}",
-                        disabled=True
-                    )
-                )
-
-                for filename in group["files"]:
-                    safe_id = f"pwad_{global_index}"
-                    self.pwad_map[safe_id] = group["paths"][filename]
-                    pwad_list.add_option(
-                        Option(f"  {filename}",id=safe_id)
-                    )
-
-                    global_index += 1
-
-            yield pwad_list
-
-            yield Static(
-                "Comando: (configure as opções)",
-                id="command-preview"
-            )
+            yield pwad_list # preenchido no on_mount
+            yield Static("Comando: ",id="command-preview")
 
             with Horizontal(id="action-buttons"):
-                yield Button(
-                    "Copiar Comando",
-                    variant="default",
-                    id="btn-copy"
-                )
-                yield Button(
-                    "Executar",
-                    variant="success",
-                    id="btn-run"
-                )
-                yield Button(
-                    "Sair",
-                    variant="error",
-                    id="btn-quit"
-                )
+                btn_copy = Button("Copiar Comando", variant="default", id="btn-copy")
+                btn_copy.tooltip = "Copia o comando para rodar no terminal e ver os logs do jogo"
+                yield btn_copy
+                yield Button("Executar",variant="success",id="btn-run")
+                yield Button("Sair",variant="error",id="btn-quit")
 
         yield Footer()
 
-###
+    ###
     def action_edit_ini(self) -> None:
+        if isinstance(self.screen, IniEditorScreen):
+            return
         self.push_screen(IniEditorScreen(self.ini_path, read_only=False))
 
     def action_view_ini(self) -> None:
+        if isinstance(self.screen, IniEditorScreen):
+            return
         self.push_screen(IniEditorScreen(self.ini_path, read_only=True))
 
-    def build_command_string(self) -> str:
-        """Monta o comando em formato legível para mostrar/copiar."""
+    def build_command_args(self) -> list[str]:
+        """Monta os argumentos reais do comando.
 
-        extra = self.extra_params.strip()
-
-        if "slade" in self.selected_port.lower():
-            parts = [self.selected_port]
-
-            if self.selected_iwad:
-                parts.append(f'"{self.selected_iwad}"')
-
-            if self.selected_pwad:
-                parts.append(f'"{self.selected_pwad}"')
-
-            if extra:
-                parts.append(extra)
-
-            return " ".join(parts)
-
-        parts = [self.selected_port]
-
-        if self.selected_iwad:
-            parts.extend(["-iwad", f'"{self.selected_iwad}"'])
-        else:
-            parts.extend(["-iwad", '""'])
-
-        if self.selected_pwad:
-            parts.extend([self.selected_mode, f'"{self.selected_pwad}"'])
-
-        if extra:
-            parts.append(extra)
-
-        return " ".join(parts)
-
-    def build_command_args(self) -> list:
-        """Monta os argumentos reais usados pelo subprocess."""
+        Lança ValueError se os parâmetros extras tiverem aspas não fechadas.
+        """
 
         if not self.selected_port:
             return []
@@ -735,15 +655,36 @@ Port=$DOOMWADDIR/zandronum/zandronum
             if self.selected_pwad:
                 args.extend([self.selected_mode, self.selected_pwad])
 
-        if self.extra_params.strip():
-            args.extend(shlex.split(self.extra_params))
+        extra = self.extra_params.strip()
+        if extra:
+            args.extend(shlex.split(extra))  # pode lançar ValueError
 
         return args
 
+    def build_command_string(self) -> str:
+        """Versão legível do comando, com quoting seguro para o shell.
+        Lança ValueError se os parâmetros extras tiverem aspas não fechadas.
+        """
+
+        return shlex.join(self.build_command_args())
+
+
+    # Atualiza a linha de comando
     def update_command_preview(self) -> None:
         try:
             preview = self.query_one("#command-preview", Static)
-            preview.update(f"Comando: {self.build_command_string()}")
+
+            try:
+                text = f"Comando: {self.build_command_string()}"
+            except ValueError:
+                text = "Comando: ⚠ aspas não fechadas nos parâmetros extras"
+
+            preview.update(text)
+
+            pwad_list = self.query_one("#pwad-list", OptionList)
+            pwad_list.border_subtitle = (
+                Path(self.selected_pwad).name if self.selected_pwad else "nenhum"
+            )
         except Exception:
             pass
 
@@ -755,6 +696,11 @@ Port=$DOOMWADDIR/zandronum/zandronum
         if event.option_id is None:
             return
 
+        if event.option_id == PWAD_NONE_ID:
+            self.selected_pwad = ""
+            self.update_command_preview()
+            return
+
         pwad_path = self.pwad_map.get(event.option_id)
 
         if pwad_path is None:
@@ -762,7 +708,23 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
         self.selected_pwad = pwad_path
         self.update_command_preview()
-    
+        
+    @on(Select.Changed, "#iwad-select")
+    def on_iwad_changed(self, event):
+        self.selected_iwad = "" if event.value is Select.BLANK else event.value
+        self.update_command_preview()
+
+    # handler do Select de Port
+    @on(Select.Changed, "#port-select")
+    def on_port_changed(self, event: Select.Changed) -> None:
+        """Atualiza o port selecionado e o preview do comando."""
+
+        if event.value is Select.BLANK:
+            return
+
+        self.selected_port = event.value
+        self.update_command_preview()
+
     # handler do -file e -merge
     def on_radio_set_changed(self, event: RadioSet.Changed) -> None:
         radio_id = event.pressed.id
@@ -776,7 +738,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         elif radio_id == "mode-merge":
             self.selected_mode = "-merge"
 
-		self.update_command_preview()
+        self.update_command_preview()
 
     def on_input_changed(self, event: Input.Changed) -> None:
         if event.input.id == "extra-input":
@@ -794,24 +756,21 @@ Port=$DOOMWADDIR/zandronum/zandronum
             command = self.build_command_string()
 
             try:
+                command = self.build_command_string()
+            except ValueError:
+                self.notify(
+                    "Parâmetros extras com aspas não fechadas.",
+                    severity="warning"
+                )
+                return
+
+            try:
                 subprocess.run(
                     ["xclip", "-selection", "clipboard"],
                     input=command.encode("utf-8"),
                     check=True
                 )
-                self.notify("Comando copiado para a área de transferência!")
-                return
 
-            except (subprocess.SubprocessError, FileNotFoundError):
-                pass
-
-            try:
-                subprocess.run(
-                    ["wl-copy"],
-                    input=command.encode("utf-8"),
-                    check=True
-                )
-                self.notify("Comando copiado (Wayland)!")
             except (subprocess.SubprocessError, FileNotFoundError):
                 self.notify(
                     "Erro: instale xclip ou wl-clipboard para copiar.",
@@ -819,7 +778,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 )
 
             return
-
+            
         if button_id == "btn-run":
             if not self.selected_iwad:
                 self.notify(
@@ -828,7 +787,14 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 )
                 return
 
-            args = self.build_command_args()
+            try:
+                args = self.build_command_args()
+            except ValueError:
+                self.notify(
+                    "Parâmetros extras com aspas não fechadas.",
+                    severity="warning"
+                )
+                return
 
             if not args:
                 self.notify(
@@ -838,7 +804,14 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 return
 
             try:
-                subprocess.Popen(args)
+                logging.info("Executando: %s", shlex.join(args))
+                subprocess.Popen(
+                    args,
+                    stdin=subprocess.DEVNULL,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    start_new_session=True,
+                )
                 self.exit()
 
             except FileNotFoundError:
@@ -847,12 +820,12 @@ Port=$DOOMWADDIR/zandronum/zandronum
                     severity="error"
                 )
 
-            except Exception as e:
+            except OSError as e:
                 self.notify(
                     f"Erro ao iniciar o jogo: {e}",
                     severity="error"
                 )
-
+##
 
 if __name__ == "__main__":
     app = DoomLauncherTUI()
