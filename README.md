@@ -79,6 +79,7 @@
 * [ ] Salvar os parametros extras no .ini.
 * [ ] Adicionar checagem automática de atualizações do projeto.
 * [ ] Multi Language
+* [ ] Testar no windows
 
 ## 📄 Licença
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
