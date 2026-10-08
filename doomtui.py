@@ -37,6 +37,7 @@ from textual import on
 from textual.widgets import OptionList
 from textual.widgets.option_list import Option
 
+# FIX-ME: Remover o loggin quando terminar as depurações
 import logging
 
 logging.basicConfig(
@@ -45,7 +46,8 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(message)s"
 )
 
-__version__ = "0.8.4"
+# Glovais
+__version__ = "0.8.5"
 PWAD_NONE_ID = "pwad_none"
 
 class IniEditorScreen(ModalScreen):
@@ -90,9 +92,6 @@ class IniEditorScreen(ModalScreen):
 
     def __init__(self, ini_path: Path, read_only: bool = False):
         super().__init__()
-        
-        
-        
         self.ini_path = ini_path
         self.read_only = read_only
 
@@ -262,8 +261,6 @@ Port=biaseddoom
 Port=$DOOMWADDIR/zandronum/zandronum
     """
 
-
-
     def __init__(self):
         super().__init__()
 
@@ -296,7 +293,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
     def expand_path_smart(self, raw_path: str) -> str:
         """Expande variáveis de ambiente presentes no caminho."""
-
         return os.path.expandvars(raw_path)
 
     def load_config_data_only(self) -> None:
@@ -305,10 +301,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
         self.iwad_directories = []
         self.pwad_directories = []
         raw_ports = []
-
         if not self.ini_path.exists():
             return
-
         current_section = None
 
         try:
@@ -361,9 +355,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         """Relê o .ini e atualiza a interface."""
 
         old_iwad = self.selected_iwad
-
         self.load_config_data_only()
-
         try:
             self.refresh_ui_elements(old_iwad)
         except Exception as e:
@@ -390,7 +382,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 continue
 
         iwads.sort(key=lambda item: item[0].lower())
-
         seen = set()
         unique_iwads = []
 
@@ -405,24 +396,18 @@ Port=$DOOMWADDIR/zandronum/zandronum
         """Procura PWADs somente nos diretórios configurados no .ini."""
 
         structured_pwads = []
-
 		# busca por arquivos.
         for directory_info in self.pwad_directories:
             directory = directory_info["path"]
-
             if not directory.exists() or not directory.is_dir():
                 continue
-
             files_in_dir = []
-
             try:
                 for file_path in directory.iterdir():
                     if not file_path.is_file():
                         continue
-                        
                     if file_path.suffix.lower() in (".wad", ".pk3"):
                         files_in_dir.append(file_path)
-
             except OSError:
                 logging.warnng("Sem acesso a pasta: %s", directory)
                 continue
@@ -431,10 +416,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 continue
 
             files_in_dir.sort(key=lambda item: item.name.lower())
-
             file_items = [file_path.name for file_path in files_in_dir]
             file_paths = {file_path.name: str(file_path) for file_path in files_in_dir}
-
             structured_pwads.append({
                 "folder": str(directory),
                 "files": file_items,
@@ -449,7 +432,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
         pwad_list = self.query_one("#pwad-list", OptionList)
         pwad_list.clear_options()
-
         self.pwad_map = {}
         global_index = 0
 
@@ -458,11 +440,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
         for group in self.scan_pwads():
             pwad_list.add_option(None)  # separador
-
             # Cabeçalho do diretório (não selecionável)
-            pwad_list.add_option(
-                Option(f"📂 {group['folder']}", disabled=True)
-            )
+            pwad_list.add_option(Option(f"📂 {group['folder']}", disabled=True))
 
             for filename in group["files"]:
                 safe_id = f"pwad_{global_index}"
@@ -472,14 +451,11 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
         if not self.pwad_map:
             pwad_list.add_option(None)
-            pwad_list.add_option(
-                Option("Nenhum PWAD encontrado nas pastas do .ini", disabled=True)
-            )
+            pwad_list.add_option(Option("Nenhum PWAD encontrado nas pastas do .ini", disabled=True))
 
         # O PWAD anterior pode não existir mais após recarregar.
         if self.selected_pwad not in self.pwad_map.values():
             self.selected_pwad = ""
-
 
     def refresh_ui_elements(self, old_iwad: str = "") -> None:
         """Atualiza a interface depois de recarregar o .ini."""
@@ -487,16 +463,13 @@ Port=$DOOMWADDIR/zandronum/zandronum
         # IWAD
         iwad_select = self.query_one("#iwad-select", Select)
         iwad_options = self.scan_iwads()
-
         if not iwad_options:
             iwad_select.set_options([("Nenhum IWAD encontrado", "")])
             iwad_select.value = Select.BLANK
             self.selected_iwad = ""
         else:
             iwad_select.set_options(iwad_options)
-
             valid_paths = [path for _, path in iwad_options]
-
             if old_iwad in valid_paths:
                 self.selected_iwad = old_iwad
             else:
@@ -507,10 +480,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
         # Port
         port_select = self.query_one("#port-select", Select)
         port_select.set_options(self.port_options)
-
         if self.port_options:
             valid_ports = [value for _, value in self.port_options]
-
             if self.selected_port not in valid_ports:
                 self.selected_port = self.port_options[0][1]
 
@@ -518,7 +489,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
         # PWADs
         self.populate_pwad_list()
-
         self.update_command_preview()
         self.notify("Configurações do .ini recarregadas com sucesso!", severity="information")
 
@@ -526,12 +496,9 @@ Port=$DOOMWADDIR/zandronum/zandronum
         """Executado quando a interface já está montada."""
 
         self.populate_pwad_list()
-
         iwad_options = self.scan_iwads()
-
         if iwad_options:
             self.selected_iwad = iwad_options[0][1]
-
             try:
                 self.query_one("#iwad-select", Select).value = self.selected_iwad
             except Exception:
@@ -547,7 +514,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
         """Constrói a interface principal."""
 
         yield Header(show_clock=True)
-
         # conteiner de cima
         with Container(id="top-pane"):
             with Vertical(classes="column"):
@@ -565,49 +531,31 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 select_iwad.border_title = "1. Selecione o IWAD"
                 yield select_iwad
 
-                with Container(
-                    classes="boxed-field",
-                    id="mode-container"
-                ) as mode_container:
+                with Container(classes="boxed-field",id="mode-container") as mode_container:
                     mode_container.border_title = "2. Modo de Carregamento"
 
                     with RadioSet(id="load-mode-set"):
-                        yield RadioButton(
-                        "-file (Padrão)",
-                            value=True,
-                            id="mode-file"
-                        )
-                        yield RadioButton(
-                            "-merge (Mesclagem)",
-                            id="mode-merge"
-                        )
+                        yield RadioButton("-file (Padrão)",value=True,id="mode-file")
+                        yield RadioButton("-merge (Mesclagem)",id="mode-merge")
 
             with Vertical(classes="column"):
                 select_port = Select(
                     self.port_options,
                     value=(
                         self.port_options[0][1]
-                        if self.port_options
-                        else "gzdoom"
+                        if self.port_options else "gzdoom"
                     ),
-                    id="port-select",
-                    classes="boxed-field"
+                    id="port-select",classes="boxed-field"
                 )
                 select_port.border_title = "3. Selecione o Port"
                 yield select_port
 
-                with Container(
-                    classes="boxed-field",
-                    id="input-container"
-                ) as input_container:
+                with Container(classes="boxed-field",id="input-container") as input_container:
                     input_container.border_title = "4. Parâmetros Extras"
-                    yield Input(
-                        placeholder="Ex: -nosound -window",
-                        id="extra-input"
-                    )
+                    yield Input(placeholder="Ex: -nosound -window",id="extra-input")
+                    
         #conteiner de baixo
         with Container(id="bottom-pane"):
-
             pwad_list = OptionList(id="pwad-list")
             pwad_list.border_title = "5. Selecione o PWAD"
             yield pwad_list # preenchido no on_mount
@@ -635,7 +583,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
     def build_command_args(self) -> list[str]:
         """Monta os argumentos reais do comando.
-
         Lança ValueError se os parâmetros extras tiverem aspas não fechadas.
         """
 
@@ -643,7 +590,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
             return []
 
         args = [self.selected_port]
-
         if "slade" in self.selected_port.lower():
             if self.selected_iwad:
                 args.append(self.selected_iwad)
@@ -666,7 +612,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
         """Versão legível do comando, com quoting seguro para o shell.
         Lança ValueError se os parâmetros extras tiverem aspas não fechadas.
         """
-
         return shlex.join(self.build_command_args())
 
 
@@ -674,14 +619,12 @@ Port=$DOOMWADDIR/zandronum/zandronum
     def update_command_preview(self) -> None:
         try:
             preview = self.query_one("#command-preview", Static)
-
             try:
                 text = f"Comando: {self.build_command_string()}"
             except ValueError:
                 text = "Comando: ⚠ aspas não fechadas nos parâmetros extras"
 
             preview.update(text)
-
             pwad_list = self.query_one("#pwad-list", OptionList)
             pwad_list.border_subtitle = (
                 Path(self.selected_pwad).name if self.selected_pwad else "nenhum"
@@ -703,7 +646,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
             return
 
         pwad_path = self.pwad_map.get(event.option_id)
-
         if pwad_path is None:
             return
 
@@ -712,6 +654,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         
     @on(Select.Changed, "#iwad-select")
     def on_iwad_changed(self, event):
+		"""Atualiza o iwad selecionado e o preview do comando."""
         self.selected_iwad = "" if event.value is Select.BLANK else event.value
         self.update_command_preview()
 
@@ -719,26 +662,20 @@ Port=$DOOMWADDIR/zandronum/zandronum
     @on(Select.Changed, "#port-select")
     def on_port_changed(self, event: Select.Changed) -> None:
         """Atualiza o port selecionado e o preview do comando."""
-
         if event.value is Select.BLANK:
             return
-
         self.selected_port = event.value
         self.update_command_preview()
 
     # handler do -file e -merge
     def on_radio_set_changed(self, event: RadioSet.Changed) -> None:
         radio_id = event.pressed.id
-
         if not radio_id:
             return
-
         if radio_id == "mode-file":
             self.selected_mode = "-file"
-
         elif radio_id == "mode-merge":
             self.selected_mode = "-merge"
-
         self.update_command_preview()
 
     def on_input_changed(self, event: Input.Changed) -> None:
@@ -748,19 +685,14 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         button_id = event.button.id
-
         if button_id == "btn-quit":
             self.exit()
             return
-
         if button_id == "btn-copy":
             try:
                 command = self.build_command_string()
             except ValueError:
-                self.notify(
-                    "Parâmetros extras com aspas não fechadas.",
-                    severity="warning"
-                )
+                self.notify("Parâmetros extras com aspas não fechadas.",severity="warning")
                 return
 
             for clip_cmd in (["xclip", "-selection", "clipboard"], ["wl-copy"]):
@@ -775,18 +707,12 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 except (subprocess.SubprocessError, FileNotFoundError):
                     continue
 
-            self.notify(
-                "Erro: instale xclip ou wl-clipboard para copiar.",
-                severity="error"
-            )
+            self.notify("Erro: instale xclip ou wl-clipboard para copiar.",severity="error")
             return
             
         if button_id == "btn-run":
             if not self.selected_iwad:
-                self.notify(
-                    "Selecione um IWAD antes de executar!",
-                    severity="warning"
-                )
+                self.notify("Selecione um IWAD antes de executar!",severity="warning")
                 return
 
             try:
@@ -799,10 +725,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 return
 
             if not args:
-                self.notify(
-                    "Nenhum Port foi configurado.",
-                    severity="error"
-                )
+                self.notify("Nenhum Port foi configurado.",severity="error")
                 return
 
             try:
@@ -817,18 +740,13 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 self.exit()
 
             except FileNotFoundError:
-                self.notify(
-                    f"Port não encontrado: {self.selected_port}",
-                    severity="error"
-                )
+                self.notify(f"Port não encontrado: {self.selected_port}",severity="error")
 
             except OSError as e:
-                self.notify(
-                    f"Erro ao iniciar o jogo: {e}",
-                    severity="error"
-                )
+                self.notify(f"Erro ao iniciar o jogo: {e}",severity="error")
 ##
-
+## Main 
+##
 if __name__ == "__main__":
     app = DoomLauncherTUI()
     app.run()
