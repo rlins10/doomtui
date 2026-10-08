@@ -78,6 +78,7 @@
 * [ ] Auto Refresh das seleções do iwad.
 * [ ] Salvar os parametros extras no .ini.
 * [ ] Adicionar checagem automática de atualizações do projeto.
+* [ ] Multi Language
 
 ## 📄 Licença
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
