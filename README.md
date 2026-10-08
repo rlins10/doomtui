@@ -23,7 +23,7 @@
 
 * Python 3.8 ou superior
 * Bibliotecas Python:
-  * `textual`
+  * `textual` [Repositório](https://github.com/Textualize/textual)
 
 ---
 
