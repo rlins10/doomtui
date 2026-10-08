@@ -71,10 +71,10 @@
    doomtui.py
 
 5. Atalhos de Teclado Principais:
-   - ctrl-e: Abre o editor modal para alterar o ficheiro doomtui.ini.
-   - ctrl-v: Abre o modo somente leitura do ficheiro doomtui.ini.
-   - ctrl-q: Sai da aplicação.
-   - Esc: sair do editor e/ou visualizador
+   * ctrl-e: Abre o editor modal para alterar o ficheiro doomtui.ini.
+   * ctrl-v: Abre o modo somente leitura do ficheiro doomtui.ini.
+   * ctrl-q: Sai da aplicação.
+   * Esc: sair do editor e/ou visualizador
 
 ## 🗺️ (TODO)
 
