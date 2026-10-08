@@ -1,28 +1,29 @@
+[English](README.md) | [Português](README.pt.md) | [Español](README.es.md)
+
 # DoomTUI
 
-**DoomTUI** é um launcher moderno e elegante baseado em terminal (TUI), desenvolvido em Python utilizando o framework [Textual](https://github.com/Textualize/textual). Ele foi criado para gerenciar e iniciar facilmente os seus jogos favoritos baseados na engine Doom, organizando IWADs, PWADs (pastas e arquivos `.wad` ou `.pk3`) e múltiplos Source Ports de forma limpa e intuitiva.
+**DoomTUI** is a modern and elegant terminal-based launcher (TUI), developed in Python using the [Textual](https://github.com/Textualize/textual) framework. It was created to easily manage and launch your favorite games based on the Doom engine, organizing IWADs, PWADs (folders and `.wad` or `.pk3` files), and multiple Source Ports in a clean and intuitive way.
 
+<img width="1024" alt="doomtui" src="screenshot.png" />
 
-<img width="1024"  alt="doomtui" src="screenshot.png" />
+## 🚀 Features
 
-## 🚀 Funcionalidades
+* **Modern TUI Interface:** Built with Textual, providing keyboard navigation and a clean interface.
+* **Automatic Detection:** Scans configured directories to find IWADs and PWADs.
+* **Multiple Format Support:** Compatible with `.wad` and `.pk3` files.
+* **Loading Modes:** Quickly switch between `-file` (default) and `-merge` (merge) modes.
+* **Integrated Configuration Editor:** View or edit the `.ini` configuration file directly from within the application through a modal screen with a built-in text editor.
+* **Command Preview:** View the complete command generated in real time, with quick copy support using `xclip` / `wl-clipboard`.
 
-* **Interface TUI Moderna:** Construída com Textual, oferecendo navegação por teclado e visual limpo.
-* **Detecção Automática:** Varredura de diretórios configurados para encontrar IWADs e PWADs.
-* **Suporte a Múltiplos Formatos:** Compatível com arquivos `.wad` e `.pk3`.
-* **Modos de Carregamento:** Alternância rápida entre `-file` (padrão) e `-merge` (mesclagem).
-* **Editor de Configuração Integrado:** Visualize ou edite o arquivo de configuração `.ini` diretamente de dentro da aplicação através de uma tela modal com editor de texto embutido.
-* **Pré-visualização de Comandos:** Acompanhe o comando completo gerado em tempo real, com suporte a cópia rápida para a área de transferência (`xclip` / `wl-clipboard`).
+## 🛠️ Requirements
 
-## 🛠️ Requisitos
+* Python 3.8 or higher
+* Python libraries:
+  * `textual` [GitHub Repository](https://github.com/Textualize/textual)
 
-* Python 3.8 ou superior
-* Bibliotecas Python:
-  * `textual` [Repositório di Github](https://github.com/Textualize/textual)
+## 📦 Installation
 
-## 📦 Instalação
-
-1. Clone o repositório ou baixe os fontes:
+1. Clone the repository or download the source code:
 
    ```bash
    git clone https://github.com/rlins10/doomtui.git
@@ -31,56 +32,63 @@
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
-## ⚙️  Configuração
+## ⚙️ Configuration
 
-2. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
-    
-    ```bash
-    ~/.config/doomtui/doomtui.ini
-    ```
+2. DoomTUI automatically creates the configuration file on its first run at:
 
-3. Exemplo da estrutura padrão do **.ini:**
+   ```bash
+   ~/.config/doomtui/doomtui.ini
+   ```
 
-    ```bash
-    [IWADSearch.Directories]
-    Path=$DOOMWADDIR
-    Path=$HOME/games/others
+3. Example of the default **.ini** structure:
 
-    [PWAD.Directories]
-    Path=$HOME/games/doom/doom-pwad
-    Path=$HOME/games/doom/doom2-pwad
+   ```bash
+   [IWADSearch.Directories]
+   Path=$DOOMWADDIR
+   Path=$HOME/games/others
 
-    [PORT.Directories]
-    Port=gzdoom
-    Port=uzdoom
-    Port=$HOME/games/zandronum/zandronum
-    ```
-    
-## 🎮 Como Usar
+   [PWAD.Directories]
+   Path=$HOME/games/doom/doom-pwad
+   Path=$HOME/games/doom/doom2-pwad
 
-4. Execute o script principal a partir do terminal:
+   [PORT.Directories]
+   Port=gzdoom
+   Port=uzdoom
+   Port=$HOME/games/zandronum/zandronum
+   ```
+
+## 🎮 How to Use
+
+4. Run the main script from the terminal:
 
    ```bash
    doomtui.py
    ```
+   
+   * Use modal edit to configure your engines, iwad and pwad directories
+   * Save your .ini
+   * Select your options 
+   * Play
 
-5. Atalhos de Teclado Principais:
-   * ctrl-e: Abre o editor modal para alterar o ficheiro doomtui.ini.
-   * ctrl-v: Abre o modo somente leitura do ficheiro doomtui.ini.
-   * ctrl-q: Sai da aplicação.
-   * Esc: sair do editor e/ou visualizador
+5. Main Keyboard Shortcuts:
+   * ctrl-e: Opens the modal editor to modify the doomtui.ini file.
+   * ctrl-v: Opens the doomtui.ini file in read-only mode.
+   * ctrl-q: Exits the application.
+   * Esc: Exits the editor and/or viewer.
 
 ## 🗺️ (TODO)
 
-6. Próximos Passos
-* [ ] Auto Refresh das seleções do iwad.
-* [ ] Salvar os parametros extras no .ini.
-* [ ] Adicionar checagem automática de atualizações do projeto.
-* [ ] Multi Language
-* [ ] Testar no windows
+6. Next Steps
+* [ ] Auto-refresh IWAD selections.
+* [ ] Save extra parameters to the `.ini` file.
+* [ ] Add automatic project update checking.
+* [ ] Multi-language support.
+* [ ] Test on Windows.
 
-## 📄 Licença
+## 📄 License
 
-   Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
-   Consulte o ficheiro LICENSE para mais detalhes.
-   Copias Permitidas.
+This project is distributed under the terms of the GNU General Public License v2.0 (GPLv2).
+
+See the LICENSE file for more details.
+
+Copies are permitted.
