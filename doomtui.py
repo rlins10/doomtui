@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 #   doomtui.py
 #
@@ -46,7 +47,7 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(message)s"
 )
 
-# Glovais
+# Globais
 __version__ = "0.8.5"
 PWAD_NONE_ID = "pwad_none"
 
@@ -396,7 +397,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         """Procura PWADs somente nos diretórios configurados no .ini."""
 
         structured_pwads = []
-		# busca por arquivos.
+        # busca por arquivos.
         for directory_info in self.pwad_directories:
             directory = directory_info["path"]
             if not directory.exists() or not directory.is_dir():
@@ -654,7 +655,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         
     @on(Select.Changed, "#iwad-select")
     def on_iwad_changed(self, event):
-		"""Atualiza o iwad selecionado e o preview do comando."""
+        """Atualiza o iwad selecionado e o preview do comando."""
         self.selected_iwad = "" if event.value is Select.BLANK else event.value
         self.update_command_preview()
 

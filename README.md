@@ -17,7 +17,7 @@
 
 ## 🛠️ Requirements
 
-* Python 3.8 or higher
+* Python 3.9+ or higher
 * Python libraries:
   * `textual` [GitHub Repository](https://github.com/Textualize/textual)
 
@@ -26,6 +26,7 @@
 1. Clone the repository or download the source code:
 
    ```bash
+   pip install textual
    git clone https://github.com/rlins10/doomtui.git
    cd doomtui
    sudo cp doomtui.py /usr/local/bin
@@ -42,7 +43,7 @@
 
 3. Example of the default **.ini** structure:
 
-   ```bash
+   ```ini
    [IWADSearch.Directories]
    Path=$DOOMWADDIR
    Path=$HOME/games/others

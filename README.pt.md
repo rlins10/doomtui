@@ -18,7 +18,7 @@
 
 ## 🛠️ Requisitos
 
-* Python 3.8 ou superior
+* Python 3.9+ ou superior
 * Bibliotecas Python:
   * `textual` [Repositório do Github](https://github.com/Textualize/textual)
 
@@ -27,6 +27,7 @@
 1. Clone o repositório ou baixe os fontes:
 
    ```bash
+   pip install textual
    git clone https://github.com/rlins10/doomtui.git
    cd doomtui
    sudo cp doomtui.py /usr/local/bin
@@ -43,7 +44,7 @@
 
 3. Exemplo da estrutura padrão do **.ini:**
 
-    ```bash
+    ```ini
     [IWADSearch.Directories]
     Path=$DOOMWADDIR
     Path=$HOME/games/others
@@ -71,7 +72,7 @@
    * Jogue a vontade
 
 5. Atalhos de Teclado Principais:
-   * ctrl-e: Abre o editor modal para alterar o ficheiro doomtui.ini.
+   * ctrl-e: Abre o editor modal para alterar o arquivo doomtui.ini.
    * ctrl-v: Abre o modo somente leitura do ficheiro doomtui.ini.
    * ctrl-q: Sai da aplicação.
    * Esc: sair do editor e/ou visualizador
@@ -90,6 +91,6 @@
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
    Consulte o ficheiro LICENSE para mais detalhes.
    
-   Copias Permitidas.
+   Cópias Permitidas.
 
 
