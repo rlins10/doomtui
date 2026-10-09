@@ -38,7 +38,7 @@
 
 ## ⚙️  Configuração
 
-3. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
+3. O DoomTUI cria automaticamente o  de configuração na primeira execução em:
     
     ```bash
     ~/.config/doomtui/doomtui.ini
@@ -74,8 +74,8 @@
    * Jogue a vontade
 
 6. Atalhos de Teclado Principais:
-   * ctrl-e: Abre o editor modal para alterar o arquivo doomtui.ini.
-   * ctrl-v: Abre o modo somente leitura do ficheiro doomtui.ini.
+   * ctrl-e: Abre o editor modal para alterar o  doomtui.ini.
+   * ctrl-v: Abre o modo somente leitura do  doomtui.ini.
    * ctrl-q: Sai da aplicação.
    * Esc: sair do editor e/ou visualizador
 
@@ -91,7 +91,7 @@
 ## 📄 Licença
 
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
-   Consulte o ficheiro LICENSE para mais detalhes.
+   Consulte o  LICENSE para mais detalhes.
    
    Cópias Permitidas.
 
