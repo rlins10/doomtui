@@ -702,10 +702,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
             try:
                 args = self.build_command_args()
             except ValueError:
-                self.notify(
-                    "Parâmetros extras com aspas não fechadas.",
-                    severity="warning"
-                )
+                self.notify("Parâmetros extras com aspas não fechadas.",severity="warning")
                 return
 
             if not args:
