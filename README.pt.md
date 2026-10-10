@@ -78,7 +78,7 @@ A biblioteca `textual` é instalada automaticamente.
 5. Execute o script principal a partir do terminal:
 
    ```bash
-   doomtui.py
+   doomtui
    ```
    * Use o Editor para configurar os diretórios dos seus ports, iwad, e pwad
    * Salve seu .ini
