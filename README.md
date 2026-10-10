@@ -18,24 +18,33 @@
 ## 🛠️ Requirements
 
 * Python 3.9+
-* Python libraries:
-  * `textual` 8.0 or higher [GitHub Repository](https://github.com/Textualize/textual)
+* [pipx](https://pipx.pypa.io/)
+* Optional: `xclip` or `wl-clipboard` (copy command to clipboard)
+
+The `textual` library is installed automatically.
 
 ## 📦 Installation
 
-1. Ensure your venv is set up correctly
-   * Instructions for creating Python virtual environments. Visit [Creating virtual environments](https://docs.python.org/3/library/venv.html)
-   * **Do not use** the `textual` package from your distribution (it is outdated and incompatible).
-   * To install `textual`, follow the instructions in the [GitHub repository](https://github.com/Textualize/textual).
-   
-2. Clone the repository or download the source code:
+1. Install [pipx](https://pipx.pypa.io/stable/installation/) (Debian / Ubuntu / Linux Mint):
 
-   ```bash
-   git clone https://github.com/rlins10/doomtui.git
-   cd doomtui
-   sudo cp doomtui.py /usr/local/bin
-   sudo chmod +x /usr/local/bin/doomtui.py
-   ```
+```bash
+   sudo apt install pipx
+   pipx ensurepath
+```
+
+   Then restart your terminal.
+
+2. Install DoomTUI:
+
+```bash
+   pipx install git+https://github.com/rlins10/doomtui.git
+```
+
+   To update later:
+
+```bash
+   pipx upgrade doomtui
+```
 
 ## ⚙️ Configuration
 
