@@ -20,7 +20,7 @@
 
 * Python 3.9+ ou superior
 * Bibliotecas Python:
-  * `textual` [Repositório do Github](https://github.com/Textualize/textual)
+  * `textual` 8.0 ou maior [Repositório do Github](https://github.com/Textualize/textual)
 
 ## 📦 Instalação
 
@@ -75,7 +75,7 @@
 
 6. Atalhos de Teclado Principais:
    * ctrl-e: Abre o editor modal para alterar o arquivo doomtui.ini.
-   * ctrl-v: Abre o modo somente leitura do ficheiro doomtui.ini.
+   * ctrl-v: Abre o modo somente leitura do arquivo doomtui.ini.
    * ctrl-q: Sai da aplicação.
    * Esc: sair do editor e/ou visualizador
 
@@ -91,7 +91,7 @@
 ## 📄 Licença
 
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
-   Consulte o ficheiro LICENSE para mais detalhes.
+   Consulte o arquivo LICENSE para mais detalhes.
    
    Cópias Permitidas.
 

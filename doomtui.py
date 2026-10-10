@@ -401,7 +401,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         for directory_info in self.pwad_directories:
             directory = directory_info["path"]
             if not directory.exists() or not directory.is_dir():
-                logging.warning("Sem acesso a pasta: %s", directory)
+                logging.warning("Pasta ignorada (não exite) (pwads): %s", directory)
                 continue
             files_in_dir = []
             try:
@@ -535,7 +535,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         yield RadioButton("-file (Padrão)",value=True,id="mode-file")
                         yield RadioButton("-merge (Mesclagem)",id="mode-merge")
 
-			# Select dos source ports
+            # Select dos source ports
             with Vertical(classes="column"):
                 select_port = Select(
                     self.port_options,

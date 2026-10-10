@@ -19,7 +19,7 @@
 
 * Python 3.9 o superior
 * Bibliotecas de Python:
-  * `textual` [Repositorio de Github](https://github.com/Textualize/textual)
+  * `textual` 8.0 o superior [Repositorio de Github](https://github.com/Textualize/textual)
 
 ## 📦 Instalación
 
