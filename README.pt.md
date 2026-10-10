@@ -47,7 +47,7 @@ A biblioteca `textual` é instalada automaticamente.
       pipx upgrade doomtui
    ```
 
-   Para desintalar:
+   Para desinstalar:
 
    ```
       pipx uninstall doomtui
