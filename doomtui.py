@@ -371,7 +371,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
             directory = directory_info["path"]
 
             if not directory.exists() or not directory.is_dir():
-                logging.debug("Pasta ignorada (não existe): %s", directory)
+                logging.warning("Pasta ignorada (não existe): %s", directory)
                 continue
 
             try:
