@@ -24,6 +24,10 @@
 
 ## 📦 Instalação
 
+0. Certifique-se que o seu venv esta configurado corretamente
+   * Instruções de criação de ambiente vituais para o Python. Visite [Criação de ambientes virtuais](https://docs.python.org/pt-br/3/library/venv.html)
+   * Se a sua distribuição não tem python3-textual, faça a instalação no seu ambiente vitual.
+
 1. Clone o repositório ou baixe os fontes:
 
    ```bash

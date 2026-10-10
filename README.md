@@ -22,6 +22,9 @@
   * `textual` 8.0 or higher [GitHub Repository](https://github.com/Textualize/textual)
 
 ## 📦 Installation
+0. Ensure your venv is set up correctly
+   * Instructions for creating Python virtual environments. Visit [Creating virtual environments](https://docs.python.org/pt-br/3/library/venv.html)
+   * If your distribution does not have python3-textual, install it in your virtual environment.
 
 1. Clone the repository or download the source code:
 
@@ -33,7 +36,7 @@
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
-2. To install with pip, you visit [GitHub Repository](https://github.com/Textualize/textual)
+2. To install with pip, please visit [GitHub Repository](https://github.com/Textualize/textual)
 
 ## ⚙️ Configuration
 
