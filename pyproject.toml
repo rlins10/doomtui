@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "doomtui"
 dynamic = ["version"]
-description = "Launcher TUI para jogos baseados na engine Doom, com múltiplos diretórios"
+description = "TUI launcher for Doom-engine games, supporting multiple directories."
 readme = "README.md"
 requires-python = ">=3.9"
 license = "GPL-2.0-or-later"
