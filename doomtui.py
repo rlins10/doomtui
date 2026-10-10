@@ -275,7 +275,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
         # Lê somente os dados. A interface ainda não existe neste ponto.
         self.load_config_data_only()
-        
+
     def create_default_ini_if_missing(self) -> None:
         """Cria um .ini padrão caso ele ainda não exista."""
 
@@ -348,7 +348,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
     def load_config(self) -> None:
         """Relê o .ini e atualiza a interface."""
-       
+
         old_iwad = self.selected_iwad
         self.load_config_data_only()
         try:
@@ -403,7 +403,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         files_in_dir.append(file_path)
             except OSError:
                 continue
-                
+
             if not files_in_dir:
                 continue
 
@@ -540,7 +540,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 with Container(classes="boxed-field",id="input-container") as input_container:
                     input_container.border_title = "4. Parâmetros Extras"
                     yield Input(placeholder="Ex: -nosound -window",id="extra-input")
-                    
+
         #conteiner de baixo
         with Container(id="bottom-pane"):
             pwad_list = OptionList(id="pwad-list")
