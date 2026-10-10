@@ -37,15 +37,21 @@ A biblioteca `textual` é instalada automaticamente.
 
 2. Instale o DoomTUI:
 
-```bash
-   pipx install git+https://github.com/rlins10/doomtui.git
-```
+   ```bash
+      pipx install git+https://github.com/rlins10/doomtui.git
+   ```
 
    Para atualizar depois:
 
-```bash
-   pipx upgrade doomtui
-```
+   ```bash
+      pipx upgrade doomtui
+   ```
+
+   Para desintalar:
+
+   ```
+      pipx uninstall doomtui
+   ```
 
 ## ⚙️ Configuração
 
