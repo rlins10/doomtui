@@ -28,10 +28,10 @@ A biblioteca `textual` é instalada automaticamente.
 
 1. Instale o [pipx](https://pipx.pypa.io/stable/installation/) (Debian / Ubuntu / Linux Mint):
 
-```bash
-   sudo apt install pipx
-   pipx ensurepath
-```
+   ```bash
+      sudo apt install pipx
+      pipx ensurepath
+   ```
 
    Depois, reinicie o terminal.
 
