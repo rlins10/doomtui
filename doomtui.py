@@ -271,10 +271,11 @@ Port=$DOOMWADDIR/zandronum/zandronum
         self.extra_params = ""
 
         self.pwad_map = {}
+        self.config_error = ""
 
         # Lê somente os dados. A interface ainda não existe neste ponto.
         self.load_config_data_only()
-
+        
     def create_default_ini_if_missing(self) -> None:
         """Cria um .ini padrão caso ele ainda não exista."""
 
@@ -293,6 +294,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
         self.iwad_directories = []
         self.pwad_directories = []
         raw_ports = []
+        self.config_error = ""
+
         if not self.ini_path.exists():
             return
         current_section = None
@@ -336,7 +339,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         port_name = Path(expanded).name.capitalize()
                         raw_ports.append((port_name, expanded))
 
-        except Exception:
+        except Exception as e:
+            self.config_error = f"Erro ao ler o .ini: {e}"
             self.port_options = [("GZDoom", "gzdoom")]
             return
 
@@ -344,7 +348,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
 
     def load_config(self) -> None:
         """Relê o .ini e atualiza a interface."""
-
+       
         old_iwad = self.selected_iwad
         self.load_config_data_only()
         try:
@@ -397,11 +401,9 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         continue
                     if file_path.suffix.lower() in (".wad", ".pk3"):
                         files_in_dir.append(file_path)
-            except Exception as e:
-                self.port_options = [("GZDoom", "gzdoom")]
-                self._config_error = f"Erro ao ler o .ini: {e}"
-            return
-
+            except OSError:
+                continue
+                
             if not files_in_dir:
                 continue
 
@@ -497,6 +499,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
             self.selected_port = self.port_options[0][1]
 
         self.update_command_preview()
+        if self.config_error:
+            self.notify(self.config_error, severity="error")
 
     # compose
     def compose(self) -> ComposeResult:
