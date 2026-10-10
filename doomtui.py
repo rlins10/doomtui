@@ -740,6 +740,9 @@ Port=$DOOMWADDIR/zandronum/zandronum
 ##
 ## Main 
 ##
+def main() -> None:
+    DoomLauncherTUI().run()
+
+
 if __name__ == "__main__":
-    app = DoomLauncherTUI()
-    app.run()
+    main()
