@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doomtui"
+dynamic = ["version"]
+description = "Launcher TUI para jogos baseados na engine Doom, com múltiplos diretórios"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "GPL-2.0-or-later"
+authors = [{ name = "Renato Lins" }]
+keywords = ["doom", "gzdoom", "launcher", "tui", "textual"]
+dependencies = ["textual>=8.0,<9"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Games/Entertainment",
+]
+
+[project.urls]
+Homepage = "https://github.com/rlins10/doomtui"
+
+[project.scripts]
+doomtui = "doomtui:main"
+
+[tool.setuptools]
+py-modules = ["doomtui"]
+
+[tool.setuptools.dynamic]
+version = { attr = "doomtui.__version__" }
