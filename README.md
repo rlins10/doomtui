@@ -77,7 +77,7 @@ The `textual` library is installed automatically.
 5. Run the main script from the terminal:
 
    ```bash
-   doomtui.py
+   doomtui
    ```
    
    * Use modal edit to configure your engines, iwad and pwad directories
