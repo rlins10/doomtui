@@ -93,6 +93,6 @@
 
 ## 📄 License
 
-   This project is distributed under the terms of the GNU General Public License v2.0 (GPLv2).
-   See the LICENSE file for more details.
-   Copies are permitted.
+   * This project is distributed under the terms of the GNU General Public License v2.0 (GPLv2).
+   * See the LICENSE file for more details.
+   * Copies are permitted.
