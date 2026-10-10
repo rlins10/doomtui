@@ -46,6 +46,11 @@ The `textual` library is installed automatically.
    pipx upgrade doomtui
 ```
 
+   To uninstall
+```
+   pipx uninstall doomtui
+```
+
 ## ⚙️ Configuration
 
 3. DoomTUI automatically creates the configuration file on its first run at:
