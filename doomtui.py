@@ -38,15 +38,6 @@ from textual import on
 from textual.widgets import OptionList
 from textual.widgets.option_list import Option
 
-# FIX-ME: Remover o logging quando terminar as depurações
-import logging
-
-logging.basicConfig(
-    filename="/tmp/doomtui-debug.log",
-    level=logging.DEBUG,
-    format="%(asctime)s %(levelname)s %(message)s"
-)
-
 # Globais
 __version__ = "0.8.6"
 PWAD_NONE_ID = "pwad_none"
@@ -346,7 +337,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         raw_ports.append((port_name, expanded))
 
         except Exception:
-            logging.exception("Erro ao ler %s", self.ini_path)
             self.port_options = [("GZDoom", "gzdoom")]
             return
 
@@ -371,7 +361,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
             directory = directory_info["path"]
 
             if not directory.exists() or not directory.is_dir():
-                logging.warning("Pasta ignorada (não existe): %s", directory)
                 continue
 
             try:
@@ -379,7 +368,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
                     if file_path.is_file() and file_path.suffix.lower() == ".wad":
                         iwads.append((file_path.name, str(file_path)))
             except OSError:
-                logging.warning("Sem acesso a pasta (iwads): %s", directory)
                 continue
 
         iwads.sort(key=lambda item: item[0].lower())
@@ -401,7 +389,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
         for directory_info in self.pwad_directories:
             directory = directory_info["path"]
             if not directory.exists() or not directory.is_dir():
-                logging.warning("Pasta ignorada (não existe) (pwads): %s", directory)
                 continue
             files_in_dir = []
             try:
@@ -410,9 +397,10 @@ Port=$DOOMWADDIR/zandronum/zandronum
                         continue
                     if file_path.suffix.lower() in (".wad", ".pk3"):
                         files_in_dir.append(file_path)
-            except OSError:
-                logging.warning("Sem acesso a pasta (pwads): %s", directory)
-                continue
+            except Exception as e:
+                self.port_options = [("GZDoom", "gzdoom")]
+                self._config_error = f"Erro ao ler o .ini: {e}"
+            return
 
             if not files_in_dir:
                 continue
@@ -722,7 +710,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
                 return
 
             try:
-                logging.info("Executando: %s", shlex.join(args))
                 subprocess.Popen(
                     args,
                     stdin=subprocess.DEVNULL,
