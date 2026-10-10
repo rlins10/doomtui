@@ -17,36 +17,34 @@
 
 ## 🛠️ Requirements
 
-* Python 3.9+ or higher
+* Python 3.9+
 * Python libraries:
   * `textual` 8.0 or higher [GitHub Repository](https://github.com/Textualize/textual)
 
 ## 📦 Installation
 1. Ensure your venv is set up correctly
-   * Instructions for creating Python virtual environments. Visit [Creating virtual environments](https://docs.python.org/3/library/venv.html)
-   * If your distribution does not have python3-textual, install it in your virtual environment.
-
+   * Instructions for creating Python virtual environments. Visit [Creating virtual environments](https://docs.python.org/3/library/venv.html) 
+   * **Do not use** the `textual` package from your distribution (it is outdated and incompatible).
+   * To install `textual`, follow the instructions in the [GitHub repository](https://github.com/Textualize/textual).
+   
 2. Clone the repository or download the source code:
 
    ```bash
-   pip install textual
    git clone https://github.com/rlins10/doomtui.git
    cd doomtui
    sudo cp doomtui.py /usr/local/bin
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
-3. To install with pip, please visit [GitHub Repository](https://github.com/Textualize/textual)
-
 ## ⚙️ Configuration
 
-4. DoomTUI automatically creates the configuration file on its first run at:
+3. DoomTUI automatically creates the configuration file on its first run at:
 
    ```bash
    ~/.config/doomtui/doomtui.ini
    ```
 
-5. Example of the default **.ini** structure:
+4. Example of the default **.ini** structure:
 
    ```ini
    [IWADSearch.Directories]
@@ -65,7 +63,7 @@
 
 ## 🎮 How to Use
 
-6. Run the main script from the terminal:
+5. Run the main script from the terminal:
 
    ```bash
    doomtui.py
@@ -76,7 +74,7 @@
    * Select your options 
    * Play
 
-7. Main Keyboard Shortcuts:
+6. Main Keyboard Shortcuts:
    * ctrl-e: Opens the modal editor to modify the doomtui.ini file.
    * ctrl-v: Opens the doomtui.ini file in read-only mode.
    * ctrl-q: Exits the application.
@@ -84,7 +82,7 @@
 
 ## 🗺️ (TODO)
 
-8. Next Steps
+7. Next Steps
 * [ ] Auto-refresh IWAD selections.
 * [ ] Save extra parameters to the `.ini` file.
 * [ ] Add automatic project update checking.

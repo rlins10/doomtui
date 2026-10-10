@@ -1,4 +1,4 @@
-# Este arquivo foi gerado para o DoomTui https://github.com/rlins10/doomtui.py
+# Este arquivo foi gerado para o DoomTui https://github.com/rlins10/doomtui
 # Estes diretórios aparecem nos campos de escolha de iwad, pwad e ports
 # Cada diretório deve ser separado por linhas, com Path= na frente
 
@@ -14,7 +14,7 @@ Path=$DOOMWADDIR/hh-pwad/HEXEN
 Path=$DOOMWADDIR/hh-pwad/HERETIC
 
 # Na indicação dos ports, você pode ou não usar o caminho
-# completo, mas se não usar, o $PATH do sistema precisar achar
+# completo, mas se não usar, o $PATH do sistema precisa achar
 # aqueles que não tem o caminho especificado
 [PORT.Directories]
 Port=gzdoom

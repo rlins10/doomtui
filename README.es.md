@@ -17,37 +17,36 @@
 
 ## 🛠️ Requisitos
 
-* Python 3.9 o superior
+* Python 3.9+
 * Bibliotecas de Python:
   * `textual` 8.0 o superior [Repositorio de Github](https://github.com/Textualize/textual)
 
 ## 📦 Instalación
 
-1. Asegúrese de que su venv esté configurado correctamente
+1. Asegúrate de que su venv esté configurado correctamente
    * Instrucciones para la creación de entornos virtuales para Python. Visite [Creación de entornos virtuales](https://docs.python.org/es/3/library/venv.html)
    * Si tu distribución no cuenta con python3-textual, instálalo en tu entorno virtual.
+   * **No uses** el paquete `textual` de tu distribución (está desactualizado y es incompatible).
+   * Para instalar `textual`, sigue las instrucciones del [repositorio de GitHub](https://github.com/Textualize/textual).
 
 2. Clona el repositorio o descarga los fuentes:
 
    ```bash
-   pip install textual
    git clone https://github.com/rlins10/doomtui.git
    cd doomtui
    sudo cp doomtui.py /usr/local/bin
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
-3. Para la instalación de `textual` sin pip, visita el [Repositorio de Github](https://github.com/Textualize/textual)
-
 ## ⚙️ Configuración
 
-4. DoomTUI crea automáticamente el archivo de configuración en la primera ejecución en:
+3. DoomTUI crea automáticamente el archivo de configuración en la primera ejecución en:
     
     ```bash
     ~/.config/doomtui/doomtui.ini
     ```
 
-5. Ejemplo de la estructura predeterminada del **.ini:**
+4. Ejemplo de la estructura predeterminada del **.ini:**
 
     ```ini
     [IWADSearch.Directories]
@@ -66,7 +65,7 @@
     
 ## 🎮 Cómo Usar
 
-6. Ejecuta el script principal desde la terminal:
+5. Ejecuta el script principal desde la terminal:
 
    ```bash
    doomtui.py
@@ -76,7 +75,7 @@
    * Selecciona tus opciones
    * Juega a gusto
 
-7. Atajos de Teclado Principales:
+6. Atajos de Teclado Principales:
    * ctrl-e: Abre el editor modal para modificar el archivo doomtui.ini.
    * ctrl-v: Abre el modo de solo lectura del archivo doomtui.ini.
    * ctrl-q: Sale de la aplicación.
@@ -84,7 +83,7 @@
 
 ## 🗺️ (TODO)
 
-8. Próximos Pasos
+7. Próximos Pasos
    * [ ] Actualización automática (Auto Refresh) de las selecciones de iwad.
    * [ ] Guardar los parámetros adicionales en el .ini.
    * [ ] Añadir comprobación automática de actualizaciones del proyecto.

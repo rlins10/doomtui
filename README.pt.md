@@ -18,37 +18,35 @@
 
 ## 🛠️ Requisitos
 
-* Python 3.9+ ou superior
+* Python 3.9+
 * Bibliotecas Python:
   * `textual` 8.0 ou maior [Repositório do Github](https://github.com/Textualize/textual)
 
 ## 📦 Instalação
 
-1. Certifique-se que o seu venv esta configurado corretamente
-   * Instruções de criação de ambiente vituais para o Python. Visite [Criação de ambientes virtuais](https://docs.python.org/pt-br/3/library/venv.html)
-   * Se a sua distribuição não tem python3-textual, faça a instalação no seu ambiente vitual.
+1. Certifique-se de que o seu venv esta configurado corretamente
+   * Instruções de criação de ambiente virtuais para o Python. Visite [Criação de ambientes virtuais](https://docs.python.org/pt-br/3/library/venv.html)
+   * **Não use** o pacote `textual` da sua distribuição (versão antiga e incompatível).
+   * Para instalar o `textual`, siga as instruções do [repositório do GitHub](https://github.com/Textualize/textual).
 
 2. Clone o repositório ou baixe os fontes:
 
    ```bash
-   pip install textual
    git clone https://github.com/rlins10/doomtui.git
    cd doomtui
    sudo cp doomtui.py /usr/local/bin
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
-3. Para instalação do `textual` sem pip, visite o [Repositório do Github](https://github.com/Textualize/textual)
-
 ## ⚙️  Configuração
 
-4. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
+3. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
     
     ```bash
     ~/.config/doomtui/doomtui.ini
     ```
 
-5. Exemplo da estrutura padrão do **.ini:**
+4. Exemplo da estrutura padrão do **.ini:**
 
     ```ini
     [IWADSearch.Directories]
@@ -67,7 +65,7 @@
     
 ## 🎮 Como Usar
 
-6. Execute o script principal a partir do terminal:
+5. Execute o script principal a partir do terminal:
 
    ```bash
    doomtui.py
@@ -77,7 +75,7 @@
    * Selecione suas opções
    * Jogue a vontade
 
-7. Atalhos de Teclado Principais:
+6. Atalhos de Teclado Principais:
    * ctrl-e: Abre o editor modal para alterar o arquivo doomtui.ini.
    * ctrl-v: Abre o modo somente leitura do arquivo doomtui.ini.
    * ctrl-q: Sai da aplicação.
@@ -85,7 +83,7 @@
 
 ## 🗺️ (TODO)
 
-8. Próximos Passos
+7. Próximos Passos
    * [ ] Auto Refresh das seleções do iwad.
    * [ ] Salvar os parametros extras no .ini.
    * [ ] Adicionar checagem automática de atualizações do projeto.

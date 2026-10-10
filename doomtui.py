@@ -401,7 +401,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
         for directory_info in self.pwad_directories:
             directory = directory_info["path"]
             if not directory.exists() or not directory.is_dir():
-                logging.warning("Pasta ignorada (não exite) (pwads): %s", directory)
+                logging.warning("Pasta ignorada (não existe) (pwads): %s", directory)
                 continue
             files_in_dir = []
             try:
@@ -411,7 +411,7 @@ Port=$DOOMWADDIR/zandronum/zandronum
                     if file_path.suffix.lower() in (".wad", ".pk3"):
                         files_in_dir.append(file_path)
             except OSError:
-                logging.warning("Sem acesso a pasta  (pwads): %s", directory)
+                logging.warning("Sem acesso a pasta (pwads): %s", directory)
                 continue
 
             if not files_in_dir:
