@@ -721,10 +721,8 @@ Port=$DOOMWADDIR/zandronum/zandronum
                     start_new_session=True,
                 )
                 self.exit()
-
             except FileNotFoundError:
                 self.notify(f"Port não encontrado: {self.selected_port}",severity="error")
-
             except OSError as e:
                 self.notify(f"Erro ao iniciar o jogo: {e}",severity="error")
 ##
