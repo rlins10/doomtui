@@ -699,7 +699,6 @@ Port=$DOOMWADDIR/zandronum/zandronum
             if not self.selected_iwad:
                 self.notify("Selecione um IWAD antes de executar!",severity="warning")
                 return
-
             try:
                 args = self.build_command_args()
             except ValueError:
