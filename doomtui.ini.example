@@ -15,11 +15,9 @@ Path=$DOOMWADDIR/hh-pwad/HERETIC
 
 # Na indicação dos ports, você pode ou não usar o caminho
 # completo, mas se não usar, o $PATH do sistema precisa achar
-# aqueles que não tem o caminho especificado
+# aqueles que não têm o caminho especificado
 [PORT.Directories]
 Port=gzdoom
 Port=uzdoom
 Port=biaseddoom
 Port=$DOOMWADDIR/zandronum/zandronum
-
-

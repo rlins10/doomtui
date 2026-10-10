@@ -20,7 +20,7 @@
 
 * Python 3.9+
 * Bibliotecas Python:
-  * `textual` 8.0 ou maior [Repositório do Github](https://github.com/Textualize/textual)
+  * `textual` 8.0 ou maior [Repositório do GitHub](https://github.com/Textualize/textual)
 
 ## 📦 Instalação
 
@@ -45,7 +45,7 @@
     ```bash
     ~/.config/doomtui/doomtui.ini
     ```
-    * A aplicação não lê o arquivo `doomtui.ini.example`, ele é apenas um exemplo.
+    * O arquivo `doomtui.ini.example` do repositório não é lido pela aplicação, é apenas um exemplo.
 
 4. Exemplo da estrutura padrão do **.ini:**
 
@@ -74,13 +74,13 @@
    * Use o Editor para configurar os diretórios dos seus ports, iwad, e pwad
    * Salve seu .ini
    * Selecione suas opções
-   * Jogue a vontade
+   * Jogue à vontade
 
 6. Atalhos de Teclado Principais:
    * ctrl-e: Abre o editor modal para alterar o arquivo doomtui.ini.
    * ctrl-v: Abre o modo somente leitura do arquivo doomtui.ini.
    * ctrl-q: Sai da aplicação.
-   * Esc: sai do editor e/ou visualizador
+   * Esc: Sai do editor e/ou visualizador
 
 ## 🗺️ (TODO)
 
@@ -95,7 +95,4 @@
 
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
    Consulte o arquivo LICENSE para mais detalhes.
-   
    Cópias permitidas.
-
-

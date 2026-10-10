@@ -19,7 +19,7 @@
 
 * Python 3.9+
 * Bibliotecas de Python:
-  * `textual` 8.0 o superior [Repositorio de Github](https://github.com/Textualize/textual)
+  * `textual` 8.0 o superior [Repositorio de GitHub](https://github.com/Textualize/textual)
 
 ## 📦 Instalación
 
@@ -44,7 +44,7 @@
     ```bash
     ~/.config/doomtui/doomtui.ini
     ```
-    * La aplicación no lee el archivo `doomtui.ini.example`, es solo un ejemplo.
+    * La aplicación no lee el archivo `doomtui.ini.example` del repositorio, es solo un ejemplo.
     
 4. Ejemplo de la estructura predeterminada del **.ini:**
 
@@ -94,5 +94,4 @@
 
    Este proyecto se distribuye bajo los términos de la licencia GNU General Public License v2.0 (GPLv2). 
    Consulta el archivo LICENSE para más detalles.
-   
    Copias permitidas.

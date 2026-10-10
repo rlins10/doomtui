@@ -44,7 +44,7 @@
    ```bash
    ~/.config/doomtui/doomtui.ini
    ```
-   * The application does not read the `doomtui.ini.example` file; it is only an example.
+   * The `doomtui.ini.example` file in the repository is not read by the application; it is only an example.
 
 4. Example of the default **.ini** structure:
 
@@ -85,16 +85,14 @@
 ## 🗺️ (TODO)
 
 7. Next Steps
-* [ ] Auto-refresh IWAD selections.
-* [ ] Save extra parameters to the `.ini` file.
-* [ ] Add automatic project update checking.
-* [ ] Multi-language support.
-* [ ] Test on Windows.
+   * [ ] Auto-refresh IWAD selections.
+   * [ ] Save extra parameters to the `.ini` file.
+   * [ ] Add automatic project update checking.
+   * [ ] Multi-language support.
+   * [ ] Test on Windows.
 
 ## 📄 License
 
-This project is distributed under the terms of the GNU General Public License v2.0 (GPLv2).
-
-See the LICENSE file for more details.
-
-Copies are permitted.
+   This project is distributed under the terms of the GNU General Public License v2.0 (GPLv2).
+   See the LICENSE file for more details.
+   Copies are permitted.
