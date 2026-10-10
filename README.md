@@ -28,8 +28,8 @@ The `textual` library is installed automatically.
 1. Install [pipx](https://pipx.pypa.io/stable/installation/) (Debian / Ubuntu / Linux Mint):
 
    ```bash
-      sudo apt install pipx
-      pipx ensurepath
+   sudo apt install pipx
+   pipx ensurepath
    ```
 
    Then restart your terminal.
@@ -37,19 +37,19 @@ The `textual` library is installed automatically.
 2. Install DoomTUI:
 
    ```bash
-      pipx install git+https://github.com/rlins10/doomtui.git
+   pipx install git+https://github.com/rlins10/doomtui.git
    ```
 
    To update later:
 
    ```bash
-      pipx upgrade doomtui
+   pipx upgrade doomtui
    ```
 
-   To uninstall
+   To uninstall:
 
-   ```
-      pipx uninstall doomtui
+   ```bash
+   pipx uninstall doomtui
    ```
 
 ## ⚙️ Configuration
