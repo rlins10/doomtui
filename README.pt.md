@@ -24,11 +24,11 @@
 
 ## 📦 Instalação
 
-0. Certifique-se que o seu venv esta configurado corretamente
+1. Certifique-se que o seu venv esta configurado corretamente
    * Instruções de criação de ambiente vituais para o Python. Visite [Criação de ambientes virtuais](https://docs.python.org/pt-br/3/library/venv.html)
    * Se a sua distribuição não tem python3-textual, faça a instalação no seu ambiente vitual.
 
-1. Clone o repositório ou baixe os fontes:
+2. Clone o repositório ou baixe os fontes:
 
    ```bash
    pip install textual
@@ -38,17 +38,17 @@
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
-2. Para instalação do `textual` sem pip, visite o [Repositório do Github](https://github.com/Textualize/textual)
+3. Para instalação do `textual` sem pip, visite o [Repositório do Github](https://github.com/Textualize/textual)
 
 ## ⚙️  Configuração
 
-3. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
+4. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
     
     ```bash
     ~/.config/doomtui/doomtui.ini
     ```
 
-4. Exemplo da estrutura padrão do **.ini:**
+5. Exemplo da estrutura padrão do **.ini:**
 
     ```ini
     [IWADSearch.Directories]
@@ -67,7 +67,7 @@
     
 ## 🎮 Como Usar
 
-5. Execute o script principal a partir do terminal:
+6. Execute o script principal a partir do terminal:
 
    ```bash
    doomtui.py
@@ -77,7 +77,7 @@
    * Selecione suas opções
    * Jogue a vontade
 
-6. Atalhos de Teclado Principais:
+7. Atalhos de Teclado Principais:
    * ctrl-e: Abre o editor modal para alterar o arquivo doomtui.ini.
    * ctrl-v: Abre o modo somente leitura do arquivo doomtui.ini.
    * ctrl-q: Sai da aplicação.
@@ -85,7 +85,7 @@
 
 ## 🗺️ (TODO)
 
-7. Próximos Passos
+8. Próximos Passos
    * [ ] Auto Refresh das seleções do iwad.
    * [ ] Salvar os parametros extras no .ini.
    * [ ] Adicionar checagem automática de atualizações do projeto.

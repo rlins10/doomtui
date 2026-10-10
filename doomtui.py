@@ -38,7 +38,7 @@ from textual import on
 from textual.widgets import OptionList
 from textual.widgets.option_list import Option
 
-# FIX-ME: Remover o loggin quando terminar as depurações
+# FIX-ME: Remover o logging quando terminar as depurações
 import logging
 
 logging.basicConfig(
