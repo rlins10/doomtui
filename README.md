@@ -23,7 +23,7 @@
 
 ## 📦 Installation
 1. Ensure your venv is set up correctly
-   * Instructions for creating Python virtual environments. Visit [Creating virtual environments](https://docs.python.org/pt-br/3/library/venv.html)
+   * Instructions for creating Python virtual environments. Visit [Creating virtual environments](https://docs.python.org/3/library/venv.html)
    * If your distribution does not have python3-textual, install it in your virtual environment.
 
 2. Clone the repository or download the source code:
