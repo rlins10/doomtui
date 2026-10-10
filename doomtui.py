@@ -48,7 +48,7 @@ logging.basicConfig(
 )
 
 # Globais
-__version__ = "0.8.5"
+__version__ = "0.8.6"
 PWAD_NONE_ID = "pwad_none"
 
 class IniEditorScreen(ModalScreen):
