@@ -23,9 +23,8 @@
 
 ## 📦 Instalación
 
-1. Asegúrate de que su venv esté configurado correctamente
-   * Instrucciones para la creación de entornos virtuales para Python. Visite [Creación de entornos virtuales](https://docs.python.org/es/3/library/venv.html)
-   * Si tu distribución no cuenta con python3-textual, instálalo en tu entorno virtual.
+1. Asegúrate de que tu venv esté configurado correctamente
+   * Instrucciones para la creación de entornos virtuales para Python. Visita [Creación de entornos virtuales](https://docs.python.org/es/3/library/venv.html)
    * **No uses** el paquete `textual` de tu distribución (está desactualizado y es incompatible).
    * Para instalar `textual`, sigue las instrucciones del [repositorio de GitHub](https://github.com/Textualize/textual).
 
@@ -45,7 +44,8 @@
     ```bash
     ~/.config/doomtui/doomtui.ini
     ```
-
+    * La aplicación no lee el archivo `doomtui.ini.example`, es solo un ejemplo.
+    
 4. Ejemplo de la estructura predeterminada del **.ini:**
 
     ```ini

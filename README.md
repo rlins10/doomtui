@@ -22,8 +22,9 @@
   * `textual` 8.0 or higher [GitHub Repository](https://github.com/Textualize/textual)
 
 ## 📦 Installation
+
 1. Ensure your venv is set up correctly
-   * Instructions for creating Python virtual environments. Visit [Creating virtual environments](https://docs.python.org/3/library/venv.html) 
+   * Instructions for creating Python virtual environments. Visit [Creating virtual environments](https://docs.python.org/3/library/venv.html)
    * **Do not use** the `textual` package from your distribution (it is outdated and incompatible).
    * To install `textual`, follow the instructions in the [GitHub repository](https://github.com/Textualize/textual).
    
@@ -43,6 +44,7 @@
    ```bash
    ~/.config/doomtui/doomtui.ini
    ```
+   * The application does not read the `doomtui.ini.example` file; it is only an example.
 
 4. Example of the default **.ini** structure:
 
@@ -71,7 +73,7 @@
    
    * Use modal edit to configure your engines, iwad and pwad directories
    * Save your .ini
-   * Select your options 
+   * Select your options
    * Play
 
 6. Main Keyboard Shortcuts:

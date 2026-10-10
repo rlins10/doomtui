@@ -24,8 +24,8 @@
 
 ## 📦 Instalação
 
-1. Certifique-se de que o seu venv esta configurado corretamente
-   * Instruções de criação de ambiente virtuais para o Python. Visite [Criação de ambientes virtuais](https://docs.python.org/pt-br/3/library/venv.html)
+1. Certifique-se de que o seu venv está configurado corretamente
+   * Instruções de criação de ambientes virtuais para o Python. Visite [Criação de ambientes virtuais](https://docs.python.org/pt-br/3/library/venv.html)
    * **Não use** o pacote `textual` da sua distribuição (versão antiga e incompatível).
    * Para instalar o `textual`, siga as instruções do [repositório do GitHub](https://github.com/Textualize/textual).
 
@@ -38,13 +38,14 @@
    sudo chmod +x /usr/local/bin/doomtui.py
    ```
 
-## ⚙️  Configuração
+## ⚙️ Configuração
 
 3. O DoomTUI cria automaticamente o arquivo de configuração na primeira execução em:
     
     ```bash
     ~/.config/doomtui/doomtui.ini
     ```
+    * A aplicação não lê o arquivo `doomtui.ini.example`, ele é apenas um exemplo.
 
 4. Exemplo da estrutura padrão do **.ini:**
 
@@ -79,22 +80,22 @@
    * ctrl-e: Abre o editor modal para alterar o arquivo doomtui.ini.
    * ctrl-v: Abre o modo somente leitura do arquivo doomtui.ini.
    * ctrl-q: Sai da aplicação.
-   * Esc: sair do editor e/ou visualizador
+   * Esc: sai do editor e/ou visualizador
 
 ## 🗺️ (TODO)
 
 7. Próximos Passos
    * [ ] Auto Refresh das seleções do iwad.
-   * [ ] Salvar os parametros extras no .ini.
+   * [ ] Salvar os parâmetros extras no .ini.
    * [ ] Adicionar checagem automática de atualizações do projeto.
-   * [ ] Multi-linguagem
-   * [ ] Testar no windows
+   * [ ] Suporte a vários idiomas
+   * [ ] Testar no Windows
 
 ## 📄 Licença
 
    Este projeto é distribuído sob os termos da licença GNU General Public License v2.0 (GPLv2). 
    Consulte o arquivo LICENSE para mais detalhes.
    
-   Cópias Permitidas.
+   Cópias permitidas.
 
 
